@@ -10,7 +10,8 @@ pipeline {
     stage('Building front image') {
       steps{
         script {
-          docker.build registryfront + ":$BUILD_NUMBER"
+
+          docker.build (registryfront + ":$BUILD_NUMBER" , ./angular-app)
         }
       }
 
@@ -30,7 +31,7 @@ pipeline {
 stage('Building back image') {
       steps{
         script {
-          docker.build registryback + ":$BUILD_NUMBER"
+          docker.build (registryback + ":$BUILD_NUMBER" ,./express-server)
         }
       }
 
