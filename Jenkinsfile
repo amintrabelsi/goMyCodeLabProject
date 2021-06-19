@@ -11,17 +11,18 @@ dockerImage =''
       steps{
         script {
 
-        dockerImage=  docker.build (registryfront + ":$BUILD_NUMBER" , "./angular-app")
+        dockerImage=  docker.build (registryfront , "./angular-app")
         }
       }
 
     }
      // Uploading Docker images into Docker Hub
-    stage('Upload  front Image') {
+    stage('push front Image') {
      steps{
          script {
             docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
+           dockerImage.push("$BUILD_NUMBER")
+             dockerImage.push('latest')
             }
         }
       }
@@ -31,17 +32,18 @@ dockerImage =''
 stage('Building back image') {
       steps{
         script {
-         dockerImage = docker.build (registryback + ":$BUILD_NUMBER" ,"./express-server")
+         dockerImage = docker.build (registryback ,"./express-server")
         }
       }
 
     }
      // Uploading Docker images into Docker Hub
-    stage('Upload  back Image') {
+    stage('push  back Image') {
      steps{
          script {
             docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
+            dockerImage.push("$BUILD_NUMBER")
+             dockerImage.push('latest')
             }
         }
       }
