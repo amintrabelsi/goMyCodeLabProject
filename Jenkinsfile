@@ -2,7 +2,7 @@ pipeline {
     environment {
     registryfront = "amin0894/front"
     registryback = "amin0894/back"
-
+dockerImage =''
     registryCredential = 'dockerhub_id'
   }
   agent any
@@ -11,7 +11,7 @@ pipeline {
       steps{
         script {
 
-          docker.build (registryfront + ":$BUILD_NUMBER" , "./angular-app")
+        dockerImage=  docker.build (registryfront + ":$BUILD_NUMBER" , "./angular-app")
         }
       }
 
@@ -31,7 +31,7 @@ pipeline {
 stage('Building back image') {
       steps{
         script {
-          docker.build (registryback + ":$BUILD_NUMBER" ,"./express-server")
+         dockerImage = docker.build (registryback + ":$BUILD_NUMBER" ,"./express-server")
         }
       }
 
