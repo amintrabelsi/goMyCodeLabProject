@@ -11,7 +11,8 @@ Docker-compose should be version 1.6 or higher.
 ```bash
 $ git clone https://github.com/hsouna/goMyCodeLabProject
 ```
- ### Run docker
+
+### Run docker
  ```bash
  $ docker-compose up
  ```
