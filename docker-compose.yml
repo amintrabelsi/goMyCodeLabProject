@@ -1,0 +1,40 @@
+version: '3.8'
+#networks:
+#  net:
+#    name: net
+#    driver: bridge
+# Services
+services:
+
+  # Nginx Service
+  frontend:
+    image: front-end:latest
+    ports:
+      - 8082:80
+  # MySQL Service
+  mongo:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+  # Backend Service
+  backend:
+    image: back-end:latest
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongo
+
+
+
+    volumes:
+      - mongodbdata:/data/db
+#    healthcheck:
+#      test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
+#      interval: 5s
+#      retries: 10
+
+
+
+# Volumes
+volumes:
+  mongodbdata:
