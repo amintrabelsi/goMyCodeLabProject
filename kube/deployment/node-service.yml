@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-service
+  labels:
+    app: nodejs
+spec:
+  ports:
+    - port: 3000
+  selector:
+    app: nodejs
+    tier: backend
+  type: ClusterIP

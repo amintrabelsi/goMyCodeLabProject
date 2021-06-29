@@ -1,0 +1,9 @@
+---
+- import_playbook: initial.yml
+- import_playbook: kube-dependencies.yml
+- import_playbook: master-cluster.yml
+- import_playbook: workers-cluster.yml
+
+#  cat ~/.ssh/id_rsa.pub | ssh -i ~/.ssh/id_rsa.pub -p 22 vagrant@192.168.50.10 'cat >> .ssh/authorized_keys && echo "SSH key copied."'
+
+#ansible-playbook -i hosts -v -b -c paramiko  ./run.yml

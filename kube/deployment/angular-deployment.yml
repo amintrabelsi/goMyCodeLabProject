@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular
+  labels:
+    app: angular
+spec:
+  selector:
+    matchLabels:
+      app: angular
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: angular
+        tier: frontend
+    spec:
+      containers:
+      - image: amin0894/front:latest
+        name: angular
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - name: nginx-config
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx.conf
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: confnginx
+#        volumeMounts:
+#        - name: angular-persistent-storage
+#          mountPath: /var/www/html
+#      volumes:
+#      - name: angular-persistent-storage
+#        persistentVolumeClaim:
+#          claimName: wp-pv-claim
+
+  pod/
+  kubectl exec -it angular-875f8ff54-8bkjq /bin/bash
+  kubectl exec angular-875f8ff54-8bkjq /bin/bash
+  kubectl exec -it angular -- /bin/bash

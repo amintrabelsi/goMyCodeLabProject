@@ -1,0 +1,13 @@
+[masters]
+ master ansible_host=192.168.50.10 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+
+[workers]
+ worker1 ansible_host=192.168.50.2 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+
+[all:vars]
+ ansible_python_interpreter=/usr/bin/python3
+
+
+kubeadm init  --apiserver-advertise-address=192.168.50.10 --pod-network-cidr=192.168.0.0/16
+
+kubectl get nodes

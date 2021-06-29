@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs
+  labels:
+    app: nodejs
+spec:
+  selector:
+    matchLabels:
+      app: nodejs
+      tier: backend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nodejs
+        tier: backend
+    spec:
+      containers:
+      - image: amin0894/back:latest
+        name: nodejs
+        ports:
+        - containerPort: 3000
+#        volumeMounts:
+#        - name: nodejs-persistent-storage
+#          mountPath: /var/www/html
+#      volumes:
+#      - name: nodejs-persistent-storage
+#        persistentVolumeClaim:
+#          claimName: wp-pv-claim
+
+  kubectl exec nodejs-8cf8d9c65-l2dqt  -c nodejs -- date
