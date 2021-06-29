@@ -2,7 +2,8 @@
 ## MEAN Docker
 App to show a Docker Compose set up for a mean application running Angular 7.
 
-## Set up
+#
+# Set up
 Make sure you have docker and docker-compose installed.
 
 Docker-compose should be version 1.6 or higher.
@@ -11,9 +12,11 @@ Docker-compose should be version 1.6 or higher.
 ```bash
 $ git clone https://github.com/hsouna/goMyCodeLabProject
 ```
- ### Run docker
+
+### Run docker
  ```bash
  $ docker-compose up
  ```
 
  App should be running in `localhost:8181`
+
