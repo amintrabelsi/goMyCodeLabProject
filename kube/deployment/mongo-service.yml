@@ -7,7 +7,9 @@ metadata:
 spec:
   ports:
     - port: 27017
+      targetPort: 27017
+      nodePort: 30002
   selector:
     app: mongo
     tier: db
-  type: ClusterIP
+  type: NodePort
