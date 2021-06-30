@@ -30,4 +30,4 @@ spec:
 #        persistentVolumeClaim:
 #          claimName: wp-pv-claim
 
-  kubectl exec nodejs-8cf8d9c65-l2dqt  -c nodejs -- date
+#  kubectl exec nodejs-8cf8d9c65-l2dqt  -c nodejs -- date
