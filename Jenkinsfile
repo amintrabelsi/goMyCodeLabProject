@@ -52,3 +52,7 @@ stage('Building back image') {
 
   }
 }
+//  sudo docker build  -t  amin0894/back:30 .   usernem/repos
+
+
+// docker push  amin0894/back:30

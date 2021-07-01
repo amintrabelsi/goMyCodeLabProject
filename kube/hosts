@@ -8,6 +8,9 @@
  ansible_python_interpreter=/usr/bin/python3
 
 
-kubeadm init  --apiserver-advertise-address=192.168.50.10 --pod-network-cidr=192.168.0.0/16
+curl https://docs.projectcalico.org/manifests/calico.yaml -O
+kubectl apply -f calico.yaml
+
+kubeadm init  --apiserver-advertise-address=192.168.50.10 --pod-network-cidr=192.155.0.0/16
 
 kubectl get nodes

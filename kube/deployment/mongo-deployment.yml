@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo
-  labels:
-    app: mongo
+  name: mongo-deployment
+
 spec:
   selector:
     matchLabels:
-      app: mongo
+      app: mongoapp
       tier: db
   strategy:
     type: Recreate
   template:
     metadata:
+      name: mongodb-deployment
+
       labels:
-        app: mongo
+        app: mongoapp
         tier: db
     spec:
       containers:
       - image: mongo:latest
-        name: mongodb
         ports:
         - containerPort: 27017
 

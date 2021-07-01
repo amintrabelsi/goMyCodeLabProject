@@ -22,10 +22,12 @@ spec:
         name: angular
         ports:
         - containerPort: 80
+        command: [ "/bin/sh","-c","cat /etc/nginx/nginx.conf" ]
+
         volumeMounts:
           - name: nginx-config
-            mountPath: /etc/nginx/nginx.conf
-            subPath: nginx.conf
+            mountPath: /etc/nginx/conf.d/default.conf
+            subPath: ./nginx.conf
       volumes:
         - name: nginx-config
           configMap:
@@ -38,7 +40,3 @@ spec:
 #        persistentVolumeClaim:
 #          claimName: wp-pv-claim
 
-  pod/
-  kubectl exec -it angular-875f8ff54-8bkjq /bin/bash
-  kubectl exec angular-875f8ff54-8bkjq /bin/bash
-  kubectl exec -it angular -- /bin/bash
