@@ -47,21 +47,18 @@ pipeline {
         }
       }
     }
-//     stage('deploy front') {
-//      steps{
-//
-//         withKubeConfig([credentialsId: 'mykubeconfig2', serverUrl: 'https://192.168.50.10:6443']) {
-//           sh 'kubectl apply -f kube/deployment/angular-deployment.yml'
-//         }
-//         }
-//       }
+    stage('deploy front') {
+     steps{
+
+        withKubeConfig([credentialsId: 'mykubeconfig2', serverUrl: 'https://192.168.50.10:6443']) {
+          sh 'kubectl apply -f kube/deployment/angular-deployment.yml'
+        }
+        }
+      }
     stage('deploy back') {
      steps{
-//         withKubeConfig([credentialsId: 'mykubeconfig2', serverUrl: 'https://192.168.50.10:6443']) {
-//           sh 'kubectl apply -f kube/deployment/node-deployment.yml'
-//         }
-        script {
-          kubernetesDeploy(configs: "kube/deployment/angular-deployment.yml", kubeconfigId: "mykubeconfig2")
+        withKubeConfig([credentialsId: 'mykubeconfig2', serverUrl: 'https://192.168.50.10:6443']) {
+          sh 'kubectl apply -f kube/deployment/node-deployment.yml'
         }
       }
     }
