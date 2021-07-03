@@ -51,14 +51,14 @@ pipeline {
      steps{
 
         withKubeConfig([credentialsId: 'mykubeconfig2', serverUrl: 'https://192.168.50.10:6443']) {
-          sh 'kubectl apply -f kube/deployment/angular-deployment.yml'
+          sh 'kubectl apply -f kube/deployment/angular-deployment.yml --record'
         }
         }
       }
     stage('deploy back') {
      steps{
         withKubeConfig([credentialsId: 'mykubeconfig2', serverUrl: 'https://192.168.50.10:6443']) {
-          sh 'kubectl apply -f kube/deployment/node-deployment.yml'
+          sh 'kubectl apply -f kube/deployment/node-deployment.yml --record'
         }
       }
     }
