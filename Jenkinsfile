@@ -2,19 +2,18 @@ pipeline {
     environment {
     registryfront = "amin0894/front"
     registryback = "amin0894/back"
-dockerImage =''
+    dockerImage =''
     registryCredential = 'dockerhub_id'
-  }  agent any
+  }
+    agent any
 
   stages {
     stage('Building front image') {
       steps{
         script {
-
         dockerImage=  docker.build (registryfront , "./angular-app")
         }
       }
-
     }
      // Uploading Docker images into Docker Hub
     stage('push front Image') {
@@ -48,16 +47,21 @@ dockerImage =''
         }
       }
     }
-stage('deploy front') {
-    withKubeConfig([credentialsId: 'mykubeconfig2', serverUrl: 'https://192.168.50.10:6443']) {
-      sh 'kubectl apply -f kube/deployment/angular-deployment'
+    stage('deploy front') {
+     steps{
+
+        withKubeConfig([credentialsId: 'mykubeconfig2', serverUrl: 'https://192.168.50.10:6443']) {
+          sh 'kubectl apply -f kube/deployment/angular-deployment'
+        }
+        }
+      }
+    stage('deploy back') {
+     steps{
+        withKubeConfig([credentialsId: 'mykubeconfig2', serverUrl: 'https://192.168.50.10:6443']) {
+          sh 'kubectl apply -f kube/deployment/node-deployment'
+        }
+      }
     }
-  }
-stage('deploy back') {
-    withKubeConfig([credentialsId: 'mykubeconfig2', serverUrl: 'https://192.168.50.10:6443']) {
-      sh 'kubectl apply -f kube/deployment/node-deployment'
-    }
-  }
 
   }
 }
