@@ -4,8 +4,8 @@ pipeline {
     registryback = "amin0894/back"
 dockerImage =''
     registryCredential = 'dockerhub_id'
-  }
-  agent any
+  }  agent any
+
   stages {
     stage('Building front image') {
       steps{
@@ -48,21 +48,36 @@ dockerImage =''
         }
       }
     }
-  stage('Deploy front') {
-      steps {
-        script {
-          kubernetesDeploy(configs: "kube/deployment/angular-deployment.yaml", kubeconfigId: "mykubeconfig2")
+//   stage('Deploy front') {
+//       steps {
+//         script {
+//           kubernetesDeploy(configs: "kube/deployment/angular-deployment.yaml", kubeconfigId: "mykubeconfig2")
+//         }
+//       }
+//     }
+//   stage('Deploy back') {
+//       steps {
+//         script {
+//           kubernetesDeploy(configs: "kube/deployment/node-deployment.yaml", kubeconfigId: "mykubeconfig2")
+//         }
+//       }
+//     }
+//   }
+  agent {
+      kubernetes {
+        	cloud 'kubernetes'
+        	defaultContainer 'jnlp'
         }
       }
-    }
-  stage('Deploy back') {
-      steps {
-        script {
+    stages {
+      stage('Deploy App') {
+        steps {
+          script {
           kubernetesDeploy(configs: "kube/deployment/node-deployment.yaml", kubeconfigId: "mykubeconfig2")
+          }
         }
       }
     }
-  }
 }
 //  sudo docker build  -t  amin0894/back:46 .   usernem/repos
 
