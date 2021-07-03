@@ -16,7 +16,6 @@ spec:
       labels:
         app: nodejs
         tier: backend
-    spec:
       containers:
       - image: amin0894/back:latest
         name: nodejs-cont

@@ -64,7 +64,7 @@ dockerImage =''
     }
   }
 }
-//  sudo docker build  -t  amin0894/back:30 .   usernem/repos
+//  sudo docker build  -t  amin0894/back:46 .   usernem/repos
 
 
-// docker push  amin0894/back:30
+// docker push  amin0894/back:46
