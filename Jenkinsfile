@@ -49,6 +49,7 @@ dockerImage =''
         }
       }
     }
+    }
 //   stage('Deploy front') {
 //       steps {
 //         script {
@@ -84,4 +85,3 @@ dockerImage =''
 
 
 // docker push  amin0894/back:46
-}
