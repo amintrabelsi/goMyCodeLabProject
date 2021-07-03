@@ -20,6 +20,7 @@ spec:
       containers:
       - image: amin0894/front:latest
         name: angular
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 #        command: [ "/bin/sh","-c","cat /etc/nginx/nginx.conf" ]
