@@ -4,7 +4,8 @@ pipeline {
     registryback = "amin0894/back"
 dockerImage =''
     registryCredential = 'dockerhub_id'
-  }  agent any
+  }
+   agent any
 
   stages {
     stage('Building front image') {
@@ -83,3 +84,4 @@ dockerImage =''
 
 
 // docker push  amin0894/back:46
+}
