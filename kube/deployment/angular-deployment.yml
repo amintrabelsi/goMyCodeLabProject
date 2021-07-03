@@ -22,7 +22,7 @@ spec:
         name: angular
         ports:
         - containerPort: 80
-        command: [ "/bin/sh","-c","cat /etc/nginx/nginx.conf" ]
+#        command: [ "/bin/sh","-c","cat /etc/nginx/nginx.conf" ]
 
         volumeMounts:
           - name: nginx-config

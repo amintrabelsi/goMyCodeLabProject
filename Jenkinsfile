@@ -29,7 +29,7 @@ dockerImage =''
     }
 
 
-stage('Building back image') {
+      stage('Building back image') {
       steps{
         script {
          dockerImage = docker.build (registryback ,"./express-server")
@@ -48,8 +48,20 @@ stage('Building back image') {
         }
       }
     }
-
-
+  stage('Deploy front') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "kube/deployment/angular-deployment.yaml", kubeconfigId: "mykubeconfig2")
+        }
+      }
+    }
+  stage('Deploy back') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "kube/deployment/node-deployment.yaml", kubeconfigId: "mykubeconfig2")
+        }
+      }
+    }
   }
 }
 //  sudo docker build  -t  amin0894/back:30 .   usernem/repos

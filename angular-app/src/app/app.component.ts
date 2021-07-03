@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   title = 'app works!';
 
   // Link to our api, pointing to localhost
-  API = 'http://192.168.50.2:30003/api';
+  API = '/api';
 
   // Declare empty list of people
   people: any[] = [];
